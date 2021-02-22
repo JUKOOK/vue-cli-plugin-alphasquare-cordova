@@ -13,15 +13,9 @@ const defaultModes = {
   'cordova-build-ios': 'production',
   'cordova-serve-browser': 'development',
   'cordova-build-browser': 'production',
-  'cordova-serve-osx': 'development',
-  'cordova-build-osx': 'production',
-  'cordova-serve-electron': 'development',
-  'cordova-build-electron': 'production',
   'cordova-build-only-www-ios': 'production',
   'cordova-build-only-www-android': 'production',
   'cordova-build-only-www-browser': 'production',
-  'cordova-build-only-www-osx': 'production',
-  'cordova-build-only-www-electron': 'production',
   'cordova-prepare': 'production'
 }
 
@@ -41,7 +35,7 @@ module.exports = (api, options) => {
     let cordovaConfigPathToUpdate
     if (platform === 'android') {
       cordovaConfigPathToUpdate = 'app/src/main/res/xml/config.xml'
-    } else if (platform === 'ios' || platform === 'osx') {
+    } else if (platform === 'ios') {
       const cordovaConfigPath = api.resolve(`${cordovaPath}/config.xml`)
       const cordovaConfig = fs.readFileSync(cordovaConfigPath, 'utf-8')
       const regexAppName = /\s+<name(.*)>(.*)<\/name>/
@@ -64,18 +58,9 @@ module.exports = (api, options) => {
 
     let runCommands
     if (target) {
-      runCommands = [
-        'run',
-        platform,
-        '--target',
-        `${target}`
-      ]
-    }
-    else {
-      runCommands =[
-        'run',
-        platform
-      ]
+      runCommands = ['run', platform, '--target', `${target}`]
+    } else {
+      runCommands = ['run', platform]
     }
 
     return spawn.sync('cordova', runCommands, {
@@ -191,7 +176,7 @@ module.exports = (api, options) => {
 
       const target = args.target
 
-      // npm run serve
+      // yarn serve
       const server = await api.service.run('serve', serveArgs)
 
       // set content url to devServer
@@ -299,22 +284,6 @@ module.exports = (api, options) => {
     return await runBuild('ios', args)
   })
 
-  api.registerCommand('cordova-serve-osx', async args => {
-    return await runServe('osx', args)
-  })
-
-  api.registerCommand('cordova-build-osx', async args => {
-    return await runBuild('osx', args)
-  })
-
-  api.registerCommand('cordova-serve-electron', async args => {
-    return await runServe('electron', args)
-  })
-
-  api.registerCommand('cordova-build-electron', async args => {
-    return await runBuild('electron', args)
-  })
-
   api.registerCommand('cordova-build-only-www-ios', async args => {
     return await runWWWBuild('ios', args)
   })
@@ -325,14 +294,6 @@ module.exports = (api, options) => {
 
   api.registerCommand('cordova-build-only-www-browser', async args => {
     return await runWWWBuild('browser', args)
-  })
-
-  api.registerCommand('cordova-build-only-www-osx', async args => {
-    return await runWWWBuild('osx', args)
-  })
-
-  api.registerCommand('cordova-build-only-www-electron', async args => {
-    return await runWWWBuild('electron', args)
   })
 
   api.registerCommand('cordova-prepare', async args => {

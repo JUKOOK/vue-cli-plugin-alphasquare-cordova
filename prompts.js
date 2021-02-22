@@ -1,3 +1,4 @@
+// prompts when 'vue add alphasqurae-cordova'
 const hasbin = require('hasbin')
 const defaults = require('./defaults')
 const hasCordova = hasbin.sync('cordova')
@@ -43,16 +44,6 @@ const prompts = [
         name: 'Browser',
         value: 'browser',
         checked: !!defaults.platforms['browser']
-      },
-      {
-        name: 'OSX',
-        value: 'osx',
-        checked: !!defaults.platforms['osx']
-      },
-      {
-        name: 'Electron',
-        value: 'electron',
-        checked: !!defaults.platforms['electron']
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
-  "name": "vue-cli-plugin-cordova",
-  "version": "2.4.1",
-  "description": "vue-cli 3.x plugin for Apache Cordova",
+  "name": "vue-cli-plugin-alphasquare-cordova",
+  "version": "0.1.0",
+  "description": "vue-cli 3.x plugin for Apache Cordova, AlphaSquare Private",
   "main": "index.js",
   "scripts": {
     "release": "standard-version",
@@ -9,19 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m0dch3n/vue-cli-plugin-cordova.git"
+    "url": "git+https://github.com/JUKOOK/vue-cli-plugin-alphasquare-cordova.git"
   },
   "keywords": [
     "vue",
     "cordova",
     "vue-cli"
   ],
-  "author": "m0dch3n",
+  "author": "JUKOOK",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/m0dch3n/vue-cli-plugin-cordova/issues"
+    "url": "https://github.com/JUKOOK/vue-cli-plugin-alphasquare-cordova/issues"
   },
-  "homepage": "https://github.com/m0dch3n/vue-cli-plugin-cordova#readme",
+  "homepage": "https://github.com/JUKOOK/vue-cli-plugin-alphasquare-cordova#readme",
   "dependencies": {
     "@vue/cli-shared-utils": "^4.2.3",
     "address": "^1.1.2",

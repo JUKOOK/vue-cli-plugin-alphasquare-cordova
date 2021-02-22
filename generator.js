@@ -1,3 +1,4 @@
+// generator when 'vue add alphasqurae-cordova'
 const fs = require('fs')
 const hasbin = require('hasbin')
 const defaults = require('./defaults')
@@ -29,13 +30,8 @@ module.exports = (api, options) => {
       'cordova-serve-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-serve-browser',
       'cordova-build-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-build-browser',
       'cordova-build-only-www-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-build-only-www-browser',
-      'cordova-serve-osx': 'cross-env CORDOVA_PLATFORM=osx vue-cli-service cordova-serve-osx',
-      'cordova-build-osx': 'cross-env CORDOVA_PLATFORM=osx vue-cli-service cordova-build-osx',
-      'cordova-build-only-www-osx': 'cross-env CORDOVA_PLATFORM=osx vue-cli-service cordova-build-only-www-osx',
-      'cordova-serve-electron': 'cross-env CORDOVA_PLATFORM=electron vue-cli-service cordova-serve-electron',
-      'cordova-build-electron': 'cross-env CORDOVA_PLATFORM=electron vue-cli-service cordova-build-electron',
-      'cordova-build-only-www-electron': 'cross-env CORDOVA_PLATFORM=electron vue-cli-service cordova-build-only-www-electron',
-      'cordova-prepare': 'vue-cli-service cordova-prepare'
+      'cordova-prepare': 'vue-cli-service cordova-prepare',
+      'serve-web': '"vue-cli-service serve"'
     },
     vue: {
       publicPath: '',
@@ -51,7 +47,7 @@ module.exports = (api, options) => {
     // router
     if (api.hasPlugin('router')) {
       let cordovaRouterMode = `process.env.CORDOVA_PLATFORM ? 'hash' : `
-      const routerFilePath = `src/router.${hasTS ? 'ts' : 'js'}`
+      const routerFilePath = `src/router/index.${hasTS ? 'ts' : 'js'}`
       const routerFile = files[routerFilePath]
       if (routerFile) {
         const lines = routerFile.split(/\r?\n/g).reverse()
@@ -95,7 +91,7 @@ module.exports = (api, options) => {
     fs.writeFileSync(ignoreCompletePath, ignore + ignoreContent)
     api.exitLog(`Updated ${ignorePath} : ${ignoreContent}`)
 
-    // cordova
+    // cordova create ...
     spawn.sync('cordova', [
       'create',
       cordovaPath,
@@ -112,7 +108,7 @@ module.exports = (api, options) => {
     api.exitLog(`Creating file: ${wwwIgnorePath}`)
     fs.writeFileSync(wwwIgnorePath, defaults.gitIgnoreContent)
 
-    // platforms
+    // cordova platforms add ...
     const srcCordovaPath = api.resolve(cordovaPath)
     platforms.forEach(platform => {
       info(`Adding platform ${platform}`)

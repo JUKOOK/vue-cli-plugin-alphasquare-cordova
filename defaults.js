@@ -1,8 +1,8 @@
 module.exports = {
   cordovaPath: 'src-cordova',
-  id: 'com.vue.example.app',
-  appName: 'VueExampleAppName',
-  platforms: ['android', 'ios', 'browser', 'osx', 'electron'],
+  id: 'com.alphasquare.app',
+  appName: 'AlphaSquare',
+  platforms: ['android', 'ios', 'browser'],
   routerMode: 'hash',
   gitIgnoreContent: '*\n*/\n!.gitignore'
 }
