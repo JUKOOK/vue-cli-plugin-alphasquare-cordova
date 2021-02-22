@@ -33,7 +33,6 @@ module.exports = (api, options) => {
       'cordova-prepare': 'vue-cli-service cordova-prepare'
     },
     vue: {
-      publicPath: '',
       pluginOptions: {
         cordovaPath
       }
