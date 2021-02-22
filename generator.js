@@ -21,15 +21,14 @@ module.exports = (api, options) => {
 
   api.extendPackage({
     scripts: {
-      'cordova-serve-android': 'cross-env CORDOVA_PLATFORM=android vue-cli-service cordova-serve-android',
-      'cordova-build-android': 'cross-env CORDOVA_PLATFORM=android vue-cli-service cordova-build-android',
-      'cordova-build-only-www-android': 'cross-env CORDOVA_PLATFORM=android vue-cli-service cordova-build-only-www-android',
-      'cordova-serve-ios': 'cross-env CORDOVA_PLATFORM=ios vue-cli-service cordova-serve-ios',
-      'cordova-build-ios': 'cross-env CORDOVA_PLATFORM=ios vue-cli-service cordova-build-ios',
-      'cordova-build-only-www-ios': 'cross-env CORDOVA_PLATFORM=ios vue-cli-service cordova-build-only-www-ios',
-      'cordova-serve-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-serve-browser',
-      'cordova-build-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-build-browser',
-      'cordova-build-only-www-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-build-only-www-browser',
+      'serve-android': 'cross-env PLATFORM=android vue-cli-service cordova-serve-android',
+      'build-android': 'cross-env PLATFORM=android vue-cli-service cordova-build-android',
+      'build-only-www-android': 'cross-env PLATFORM=android vue-cli-service cordova-build-only-www-android',
+      'serve-ios': 'cross-env PLATFORM=ios vue-cli-service cordova-serve-ios',
+      'build-ios': 'cross-env PLATFORM=ios vue-cli-service cordova-build-ios',
+      'build-only-www-ios': 'cross-env PLATFORM=ios vue-cli-service cordova-build-only-www-ios',
+      'serve-web': 'cross-env PLATFORM=web vue-cli-service serve',
+      'build-web': 'cross-env PLATFORM=web vue-cli-service build',
       'cordova-prepare': 'vue-cli-service cordova-prepare'
     },
     vue: {

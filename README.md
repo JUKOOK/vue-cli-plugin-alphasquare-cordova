@@ -1,4 +1,4 @@
-# vue-cli-plugin-cordova
+# vue-cli-plugin-alphasquare-cordova-test
 
 [Vue CLI 3.x](https://github.com/vuejs/vue-cli) plugin for Apache Cordova, AlphaSquare Private.
 Based on [vue-cli-plugin-cordova](https://github.com/m0dch3n/vue-cli-plugin-cordova)
@@ -31,25 +31,24 @@ $ yarn cordova-prepare # prepare for build (you can run this command, when you c
 Android
 
 ```sh
-$ yarn cordova-serve-android # Development Android
-$ yarn cordova-build-android # Build Android
-$ yarn cordova-build-only-www-android # Build only files to src-cordova
+$ yarn serve-android # Development Android
+$ yarn build-android # Build Android
+$ yarn build-only-www-android # Build only files to src-cordova
 ```
 
 IOS
 
 ```sh
-$ yarn cordova-serve-ios # Development IOS
-$ yarn cordova-build-ios # Build IOS
-$ yarn cordova-build-only-www-ios # Build only files to src-cordova
+$ yarn serve-ios # Development IOS
+$ yarn build-ios # Build IOS
+$ yarn build-only-www-ios # Build only files to src-cordova
 ```
 
-Browser
+Web
 
 ```sh
-$ yarn cordova-serve-browser # Development Browser
-$ yarn cordova-build-browser # Build Browser
-$ yarn cordova-build-only-www-browser # Build only files to src-cordova
+$ yarn serve-web # Development Web
+$ yarn build-web # Build Web
 ```
 
 ## IMPORTANT
@@ -72,7 +71,7 @@ During installation, the plugin is setting some important variables, modifying t
 
 - Setting **baseUrl** in vue.config.js to '' because in cordova production, files are served from **file://android_asset/www/**
 - Setting cordovaPath in **vue.config.js**
-- Checking if **router** is available and modify router mode to **'hash'** if process.env.CORDOVA_PLATFORM is set
+- Checking if **router** is available and modify router mode to **'hash'** if process.env.PLATFORM is set
 - Adding ignore paths for cordova in **.gitignore**
 - Executing '**cordova create cordovaPath id appName**' (cordovaPath, id and appName will be **prompted**)
 - Adding cordova before_prepare hook in **config.xml**
@@ -80,12 +79,12 @@ During installation, the plugin is setting some important variables, modifying t
 
 ### In development mode
 
-In development mode (`yarn cordova-serve-*`), the plugin is starting the dev server, and creating an app with a webview, showing your dev server page.
+In development mode (`yarn serve-*`), the plugin is starting the dev server, and creating an app with a webview, showing your dev server page.
 
 It is doing this by:
 
 - Adding **cordova.js** to your **index.html**
-- Defining **process.env.CORDOVA_PLATFORM** to **android**, **ios**, **browser**
+- Defining **process.env.PLATFORM** to **android**, **ios**, **web**
 - Starting the Dev Server
 - Executing '**cordova clean**'
 - Executing '**cordova run platform**'
@@ -93,12 +92,12 @@ It is doing this by:
 
 ### In Production mode
 
-In production mode (`yarn cordova-build-*`), the plugin is building the app, with all it's assets and files etc locally in the package. The webview is showing file:///android_asset/www/index.html
+In production mode (`yarn build-*`), the plugin is building the app, with all it's assets and files etc locally in the package. The webview is showing file:///android_asset/www/index.html
 
 It is doing this by:
 
 - Adding **cordova.js** to your **index.html**
-- Defining **process.env.CORDOVA_PLATFORM** to **android**, **ios**, **browser**
+- Defining **process.env.PLATFORM** to **android**, **ios**, **web**
 - Building the app, output to **/src-cordova/www**
 - Executing '**cordova clean**'
 - Executing '**cordova build platform --release**'
@@ -108,7 +107,7 @@ It is doing this by:
 - For a production build, you need to **manually sign** the app, in order to be able to install it on your device, or publish it in the app store.
 - You need to handle cordova's **"deviceready"** etc in your app
 - **Cordova Plugins** can be added under /src-cordova by executing '**cordova plugin add PLUGIN**'
-- If you want to **debug** your build app, using **chrome devtools**, build your app with '**cordova build platform --debug**' and make sure /src-cordova/www has your **latest build** by running **cordova-build-only-www-platform**
+- If you want to **debug** your build app, using **chrome devtools**, build your app with '**cordova build platform --debug**' and make sure /src-cordova/www has your **latest build** by running **build-only-www-platform**
 
 ## License
 

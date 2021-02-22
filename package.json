@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-alphasquare-cordova-test",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "vue-cli 3.x plugin for Apache Cordova, AlphaSquare Private",
   "main": "index.js",
   "scripts": {

@@ -11,11 +11,8 @@ const defaultModes = {
   'cordova-build-android': 'production',
   'cordova-serve-ios': 'development',
   'cordova-build-ios': 'production',
-  'cordova-serve-browser': 'development',
-  'cordova-build-browser': 'production',
   'cordova-build-only-www-ios': 'production',
   'cordova-build-only-www-android': 'production',
-  'cordova-build-only-www-browser': 'production',
   'cordova-prepare': 'production'
 }
 
@@ -143,7 +140,7 @@ module.exports = (api, options) => {
     })
 
     if (availablePlatforms.includes(platform)) {
-      // add cordova.js, define process.env.CORDOVA_PLATFORM
+      // add cordova.js, define process.env.PLATFORM
       chainWebPack(platform)
       // Add js middleware
       configureDevServer(platform)
@@ -221,7 +218,7 @@ module.exports = (api, options) => {
   }
 
   const runWWWBuild = async (platform, args) => {
-    // add cordova.js, define process.env.CORDOVA_PLATFORM
+    // add cordova.js, define process.env.PLATFORM
     chainWebPack(platform)
     // set build output folder
     args.dest = cordovaPath + '/www'
@@ -248,7 +245,7 @@ module.exports = (api, options) => {
           publicPath: false
         }])
 
-      // process.env.CORDOVA_PLATFORM = platform
+      // process.env.PLATFORM = platform
       if (platform !== null) {
         webpackConfig.plugin('define')
           .tap(args => {
@@ -258,7 +255,7 @@ module.exports = (api, options) => {
                 {},
                 env,
                 {
-                  CORDOVA_PLATFORM: '\'' + platform + '\''
+                  PLATFORM: '\'' + platform + '\''
                 }
               ),
               ...rest
@@ -292,23 +289,8 @@ module.exports = (api, options) => {
     return await runWWWBuild('android', args)
   })
 
-  api.registerCommand('cordova-build-only-www-browser', async args => {
-    return await runWWWBuild('browser', args)
-  })
-
   api.registerCommand('cordova-prepare', async args => {
     return await runPrepare(args)
-  })
-
-  api.registerCommand('cordova-serve-browser', async args => {
-    args.open = true
-    const platform = 'browser'
-    chainWebPack(platform)
-    configureDevServer(platform)
-    return await api.service.run('serve', args)
-  })
-  api.registerCommand('cordova-build-browser', async args => {
-    return await runBuild('browser', args)
   })
 }
 
