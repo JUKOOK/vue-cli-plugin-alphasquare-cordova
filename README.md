@@ -1,8 +1,7 @@
 # vue-cli-plugin-cordova
 
 [Vue CLI 3.x](https://github.com/vuejs/vue-cli) plugin for Apache Cordova, AlphaSquare Private.
-Based on [vue-cli-plugin-cordova
-](https://github.com/m0dch3n/vue-cli-plugin-cordova)
+Based on [vue-cli-plugin-cordova](https://github.com/m0dch3n/vue-cli-plugin-cordova)
 
 Integrate Cordova into Vue Cli App
 
@@ -18,7 +17,7 @@ $ npm install -g cordova # If cordova is not already installed
 **Add the plugin to your vue app.**
 
 ```sh
-$ vue add alphasquare-cordova # Do not need 'yarn add vue-cli-plugin-alphasquare-cordova'
+$ vue add alphasquare-cordova-test # Do not need 'yarn add vue-cli-plugin-alphasquare-cordova-test'
 ```
 
 ## Usage

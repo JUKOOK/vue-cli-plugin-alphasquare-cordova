@@ -50,6 +50,9 @@ module.exports = (api, options) => {
       const routerFilePath = `src/router/index.${hasTS ? 'ts' : 'js'}`
       const routerFile = files[routerFilePath]
       if (routerFile) {
+        api.exitLog(`There is routerFile`)
+        api.exitLog(`There is routerFile`)
+        api.exitLog(`There is routerFile`)
         const lines = routerFile.split(/\r?\n/g).reverse()
         const regex = /\s+mode:\s('|"?\w+'|"?)/
         const modeIndex = lines.findIndex(line => line.match(regex))
