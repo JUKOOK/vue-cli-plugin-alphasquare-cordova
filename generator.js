@@ -30,8 +30,7 @@ module.exports = (api, options) => {
       'cordova-serve-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-serve-browser',
       'cordova-build-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-build-browser',
       'cordova-build-only-www-browser': 'cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-build-only-www-browser',
-      'cordova-prepare': 'vue-cli-service cordova-prepare',
-      'serve-web': '"vue-cli-service serve"'
+      'cordova-prepare': 'vue-cli-service cordova-prepare'
     },
     vue: {
       publicPath: '',
@@ -42,16 +41,17 @@ module.exports = (api, options) => {
   })
 
   api.postProcessFiles(files => {
+    api.exitLog('postProcessFiles')
     const hasTS = api.hasPlugin('typescript')
 
     // router
     if (api.hasPlugin('router')) {
+      api.exitLog(`router plugin ON`)
       let cordovaRouterMode = `process.env.CORDOVA_PLATFORM ? 'hash' : `
       const routerFilePath = `src/router/index.${hasTS ? 'ts' : 'js'}`
+      api.exitLog(`routerFilePath : ${routerFilePath}`)
       const routerFile = files[routerFilePath]
       if (routerFile) {
-        api.exitLog(`There is routerFile`)
-        api.exitLog(`There is routerFile`)
         api.exitLog(`There is routerFile`)
         const lines = routerFile.split(/\r?\n/g).reverse()
         const regex = /\s+mode:\s('|"?\w+'|"?)/
