@@ -102,7 +102,7 @@ module.exports = (api, options) => {
     if (contentIndex >= 0) {
       lines.splice(contentIndex, 0,
         '    <!-- this hook will point your config.xml to the DevServer on Serve -->',
-        '    <hook type="after_prepare" src="../node_modules/vue-cli-plugin-cordova/serve-config-hook.js" />'
+        '    <hook type="after_prepare" src="../node_modules/vue-cli-plugin-alphasquare-cordova-test/serve-config-hook.js" />'
       )
       cordovaConfig = lines.join('\n')
       fs.writeFileSync(configCompletePath, cordovaConfig)

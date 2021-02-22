@@ -60,7 +60,7 @@ $ yarn cordova-build-only-www-browser # Build only files to src-cordova
 
 - You need some experience with Cordova, to solve many issues, like having the right Java JDK, Android SDK, XTools, Signing an App, Publishing an App etc. If you encounter issues related to Cordova etc, please don't post them this issue tracker.
 
-- If you are upgrading from an older release, please add `<hook type="after_prepare" src="../node_modules/vue-cli-plugin-cordova/serve-config-hook.js" />` to your config.xml
+- If you are upgrading from an older release, please add `<hook type="after_prepare" src="../node_modules/vue-cli-plugin-alphasquare-cordova-test/serve-config-hook.js" />` to your config.xml
 
 - The devserver will run under https from now on, so make sure your rest & api endpoints are available under https, and have a correct CORS setup
 
