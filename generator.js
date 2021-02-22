@@ -45,35 +45,32 @@ module.exports = (api, options) => {
     const hasTS = api.hasPlugin('typescript')
 
     // router
-    if (api.hasPlugin('router')) {
-      api.exitLog(`router plugin ON`)
-      let cordovaRouterMode = `process.env.CORDOVA_PLATFORM ? 'hash' : `
-      const routerFilePath = `src/router/index.${hasTS ? 'ts' : 'js'}`
-      api.exitLog(`routerFilePath : ${routerFilePath}`)
-      const routerFile = files[routerFilePath]
-      if (routerFile) {
-        api.exitLog(`There is routerFile`)
-        const lines = routerFile.split(/\r?\n/g).reverse()
-        const regex = /\s+mode:\s('|"?\w+'|"?)/
-        const modeIndex = lines.findIndex(line => line.match(regex))
-        if (modeIndex >= 0) {
-          const matches = lines[modeIndex].match(regex)
-          const routerMode = matches[1]
-          if (routerMode.includes('"')) {
-            cordovaRouterMode = cordovaRouterMode.replace(`'hash'`, `"hash"`)
-          }
-          const newRouterMode = cordovaRouterMode + routerMode
-          lines[modeIndex] = lines[modeIndex].replace(routerMode, newRouterMode)
-          api.exitLog('Updated ' + routerFilePath + ' : ' + newRouterMode)
-        } else {
-          if (routerFile.includes('mode:')) {
-            api.exitLog(`Unable to modify current router mode, make sure it's 'hash'`, 'warn')
-          }
+    let cordovaRouterMode = `process.env.CORDOVA_PLATFORM ? 'hash' : `
+    const routerFilePath = `src/router/index.${hasTS ? 'ts' : 'js'}`
+    api.exitLog(`routerFilePath : ${routerFilePath}`)
+    const routerFile = files[routerFilePath]
+    if (routerFile) {
+      api.exitLog(`There is routerFile`)
+      const lines = routerFile.split(/\r?\n/g).reverse()
+      const regex = /\s+mode:\s('|"?\w+'|"?)/
+      const modeIndex = lines.findIndex(line => line.match(regex))
+      if (modeIndex >= 0) {
+        const matches = lines[modeIndex].match(regex)
+        const routerMode = matches[1]
+        if (routerMode.includes('"')) {
+          cordovaRouterMode = cordovaRouterMode.replace(`'hash'`, `"hash"`)
         }
-        files[routerFilePath] = lines.reverse().join('\n')
+        const newRouterMode = cordovaRouterMode + routerMode
+        lines[modeIndex] = lines[modeIndex].replace(routerMode, newRouterMode)
+        api.exitLog('Updated ' + routerFilePath + ' : ' + newRouterMode)
       } else {
-        api.exitLog(`Unable to find router file, make sure router mode is 'hash'`, 'warn')
+        if (routerFile.includes('mode:')) {
+          api.exitLog(`Unable to modify current router mode, make sure it's 'hash'`, 'warn')
+        }
       }
+      files[routerFilePath] = lines.reverse().join('\n')
+    } else {
+      api.exitLog(`Unable to find router file, make sure router mode is 'hash'`, 'warn')
     }
   })
 
