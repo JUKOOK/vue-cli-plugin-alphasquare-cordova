@@ -27,8 +27,6 @@ module.exports = (api, options) => {
       'serve-ios': 'cross-env PLATFORM=ios vue-cli-service cordova-serve-ios',
       'build-ios': 'cross-env PLATFORM=ios vue-cli-service cordova-build-ios',
       'build-only-www-ios': 'cross-env PLATFORM=ios vue-cli-service cordova-build-only-www-ios',
-      'serve-web': 'cross-env PLATFORM=web vue-cli-service serve',
-      'build-web': 'cross-env PLATFORM=web vue-cli-service build',
       'cordova-prepare': 'vue-cli-service cordova-prepare'
     },
     vue: {
@@ -46,10 +44,7 @@ module.exports = (api, options) => {
       ? fs.readFileSync(ignoreCompletePath, 'utf-8')
       : ''
     var ignoreContent = '\n# Cordova\n'
-    const folders = ['platforms', 'plugins']
-    folders.forEach(folder => {
-      ignoreContent += `/${cordovaPath}/${folder}\n`
-    })
+    ignoreContent += `/${cordovaPath}\n`
     ignoreContent += '/public/cordova.js\n'
 
     fs.writeFileSync(ignoreCompletePath, ignore + ignoreContent)
